@@ -1,6 +1,12 @@
 FROM alpine:3.16
 
 # Install the packages we need. Avahi will be included
+RUN apk add --update \
+        python3 \
+        python3-dev \
+        py3-pip \
+        && rm -rf /var/cache/apk/*
+
 RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/edge/testing\nhttps://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories &&\
 	apk add --update cups \
 	cups-libs \
@@ -17,9 +23,6 @@ RUN echo -e "https://dl-cdn.alpinelinux.org/alpine/edge/testing\nhttps://dl-cdn.
 	hplip \
 	avahi \
 	inotify-tools \
-	python3 \
-	python3-dev \
-	py3-pip \
 	build-base \
 	wget \
 	rsync \
